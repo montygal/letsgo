@@ -46,6 +46,13 @@
   }
 }
 
+@media screen and (max-width: 400px){
+  nav{
+      display: flex;
+      flex-direction: column;
+  }
+}
+
 
 
 nav{
