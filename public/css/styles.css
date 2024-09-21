@@ -48,12 +48,12 @@
 
 
 
-.cars nav{
+nav{
   font-size: 2em;
   background-color: #8d8d8d;
 }
 
-.cars nav ul{
+nav ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -61,14 +61,17 @@
   justify-content: space-around;
 }
 
-.cars nav ul li{
+nav ul li{
   cursor: pointer;
   padding: 0.5rem;
 }
 
-.cars nav ul li:hover{
+nav ul li:hover{
   background-color: #4c96d7;
 }
+
+
+
 
 .delorean{
   color:blue;
@@ -84,26 +87,42 @@
 
 .left{
   display: flex;
-  justify-content: flex-start;
+  column-count: 2;
+  column-gap: 40px;
 }
+
 
 .right{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  
+  box-sizing: border-box;
+  width: 25%;
+  float: right;
 }
+  
+
 
 .upgrade1{
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
+  display:inline-block;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid blue;
+
 }
 
-.upgrade2{
+/* .upgrade2{
   display: flex;
-  justify-content: flex-end;
+  justify-content:right;
   flex-direction: column;
+} */
+
+
+.upgrade1{
+  display:inline-block;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid blue;
+
 }
 
 input[type=text] {
@@ -245,13 +264,13 @@ html {
   font-size: 16px;
 }
 
-/* body {
+body {
   margin: 0;
   padding: 0;
   background-image: url("/images/site/small_check.jpg");
   font-size: 1.2rem;
   font-family: "Raleway", sans-serif;
-} */
+}
 
 header {
   display: flex;
