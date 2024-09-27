@@ -116,12 +116,6 @@ nav ul li:hover{
 
 }
 
-/* .upgrade2{
-  display: flex;
-  justify-content:right;
-  flex-direction: column;
-} */
-
 
 .upgrade1{
   display:inline-block;
@@ -274,7 +268,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-image: url("/images/site/small_check.jpg");
   font-size: 1.2rem;
   font-family: "Raleway", sans-serif;
 }
