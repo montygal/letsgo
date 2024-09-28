@@ -19,6 +19,6 @@ WHERE classification_name = 'Sport';
 
 --Query Six
 UPDATE inventory
-SET inv_image = REPLACE(inv_image, '/image', '/image/vehicles');
+SET inv_image = REPLACE(inv_image, '/image/vehicles/vehicles/vehicless', '/image/vehicles');
 UPDATE inventory
-SET inv_thumbnail = REPLACE(inv_thumbnail, '/image', '/image/vehicles');
+SET inv_thumbnail = REPLACE(inv_thumbnail, '/image/vehicles/vehicles/vehicless', '/image/vehicles');
