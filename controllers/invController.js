@@ -52,7 +52,6 @@ invCont.addClassification = async function (req, res, next) {
   res.render("inventory/add-classification", {
     title: "Add New Classification",
     nav,
-    errors: null
   })
 }
 
@@ -62,7 +61,7 @@ invCont.addInventory = async function (req, res, next) {
   res.render("inventory/add-inventory", {
     title: "Add Inventory",
     nav,
-    errors: null
   })
 }
+
 module.exports = invCont

@@ -64,4 +64,5 @@ async function addVehicle(inv_make, inv_model, inv_year, inv_description, inv_im
     return error.message
   }
 }
+
 module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, classification, addVehicle};
