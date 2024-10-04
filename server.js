@@ -15,6 +15,8 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const Util = require("./utilities/index.js")
 const session = require("express-session")
 const pool = require('./database/')
+const accountRoute = require("./routes/accountRoute")
+const bodyParser = require("body-parser")
 /* ***********************
  * Routes
  *************************/
@@ -34,6 +36,9 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 
 // Express Messages Middleware
@@ -56,6 +61,7 @@ app.get("/", baseController.buildHome)
 
 //Inventory Routes
 app.use("/inv", inventoryRoute)
+app.use("/account", accountRoute)
 
 
 // File Not Found Route - must be last route in list
