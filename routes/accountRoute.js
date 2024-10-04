@@ -4,8 +4,9 @@ const Util = require("../utilities/index")
 const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
 
-// Route to build inventory by classification view
+// Route to build inventory by Login view
 router.get("/login", Util.handleErrors(accountController.buildLogin));
+//Route to build the registration view
 router.get("/register", Util.handleErrors(accountController.buildRegister));
 
 router.post('/register', Util.handleErrors(accountController.registerAccount))
