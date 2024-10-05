@@ -1,0 +1,18 @@
+<hi><%- messages() %></hi>
+<body>
+  <div class="parts">
+    <form action="/account/parts" method="post">
+      <label for="Parts">Choose Parts</label>
+      <select name="parts" id="parts">
+        <option value="Windshield Wipers">Windshield Wipers</option>
+        <option value="Engine">Engine</option>
+        <option value="Spark Plugs">Spark Plugs</option>
+        <option value="Bumper">Bumper</option>
+        <option value="Windshield">Windshield</option>
+        <option value="Windows">Windows</option>
+      </select>
+      <input type="submit" value="Submit" />
+      <input type="hidden" name="action" value="parts" />
+    </form>
+  </div>
+</body>

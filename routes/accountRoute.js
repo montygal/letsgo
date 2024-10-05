@@ -10,6 +10,9 @@ router.get("/login", Util.handleErrors(accountController.buildLogin));
 //Route to build the registration view
 router.get("/register", Util.handleErrors(accountController.buildRegister));
 
+//Route to get the parts view
+router.get("/parts", Util.handleErrors(accountController.buildParts));
+
 //Route to Register the Account
 router.post('/register', Util.handleErrors(accountController.registerAccount))
 
@@ -20,4 +23,6 @@ router.post(
     regValidate.checkRegData,
     Util.handleErrors(accountController.registerAccount)
   )
+
+
 module.exports = router;

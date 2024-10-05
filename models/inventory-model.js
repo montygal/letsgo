@@ -65,4 +65,6 @@ async function addVehicle(inv_make, inv_model, inv_year, inv_description, inv_im
   }
 }
 
+
+
 module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, classification, addVehicle};

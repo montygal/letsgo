@@ -26,6 +26,17 @@ async function buildRegister(req, res, next) {
   })
 }
 
+/* ****************************************
+*  Deliver parts view
+* *************************************** */
+async function buildParts(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/parts", {
+    title: "Parts",
+    nav,
+    errors: null
+  })
+}
 
 /* ****************************************
 *  Process Registration
@@ -58,4 +69,4 @@ async function registerAccount(req, res) {
     })
   }
 }
-module.exports = {buildLogin, buildRegister, registerAccount}
+module.exports = {buildLogin, buildRegister, registerAccount, buildParts}

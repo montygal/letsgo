@@ -20,4 +20,8 @@ router.get("/add-inventory", Util.handleErrors(invController.addInventory));
 //Route to Add Classification
 router.get("/add-classification", Util.handleErrors(invController.addClassification));
 
+//Route to Process New Classification
+router.post('/add-classification', Util.handleErrors(invController.classification));
+//Route to Process New Inventory
+router.post('/add-inventory', Util.handleErrors(invController.addVehicle));
 module.exports = router;
