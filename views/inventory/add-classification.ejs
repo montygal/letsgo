@@ -1,12 +1,18 @@
 <hi><%- messages() %></hi>
+
 <body>
   <div class="addClassification">
-    <form action="/inventory/add-classification" method="post">
+    <form action="/inv/add-classification" method="post">
       <label for="classification">Add a Classification Name!</label>
-      <input type="text" name="classification_name" id="classification_name" required />
+      <input
+        type="text"
+        name="classification_name"
+        id="classification_name"
+        required
+      />
+      <input type="submit" value="Submit">
+      <input type="hidden" name="action" value="add-classification" />
       <span>There cannot be any spaces or special characters.</span>
-      <input type="submit" value="Add Classification" />
-      <input type="hidden" name="action" value="Add Classification" />
     </form>
   </div>
 </body>
