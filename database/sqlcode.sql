@@ -60,5 +60,5 @@ CREATE TABLE IF NOT EXISTS public.parts(
 	parts_bumpertext character varying NOT NULL,
 	parts_windshield character varying NOT NULL,
 	parts_windows character varying NOT NULL,
-	CONSTRAINT parts_pkey PRIMARY KEY (inv_id)
+	CONSTRAINT parts_pkey PRIMARY KEY (parts_id)
 );

@@ -58,9 +58,10 @@ invCont.addClassification = async function (req, res, next) {
 //Deliver Add Inventory Form
 invCont.addInventory = async function (req, res, next) {
   let nav = await utilities.getNav()
+  let classificationList = await utilities.buildClassificationList()
   res.render("inventory/add-inventory", {
     title: "Add Inventory",
-    nav,
+    nav, classificationList
   })
 }
 
@@ -68,6 +69,7 @@ invCont.addInventory = async function (req, res, next) {
 //Add Vehicle to Database
 invCont.addVehicle = async function (req, res) {
   let nav = await utilities.getNav()
+  let classificationList = await utilities.buildClassificationList()
   const {
     classification_id,
     inv_make,
@@ -100,13 +102,13 @@ invCont.addVehicle = async function (req, res) {
     )
     res.status(201).render("inventory/add-inventory", {
       title: "Inventory",
-      nav,
+      nav, classificationList
     })
   } else {
     req.flash("notice", "Sorry, the inventory addition failed.")
     res.status(501).render("inventory/add-inventory", {
       title: "Inventory",
-      nav,
+      nav, classificationList
     })
   }
 }
@@ -127,6 +129,7 @@ invCont.classification = async function (req, res) {
       "notice",
       `Congratulations, you\'ve added ${classification_name}.`
     )
+    let nav = await utilities.getNav()
     res.status(201).render("inventory/add-classification", {
       title: "classification",
       nav,

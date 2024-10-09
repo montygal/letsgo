@@ -69,4 +69,5 @@ async function registerAccount(req, res) {
     })
   }
 }
+
 module.exports = {buildLogin, buildRegister, registerAccount, buildParts}

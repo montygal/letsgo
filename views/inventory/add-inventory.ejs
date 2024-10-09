@@ -1,7 +1,7 @@
 <hi><%- messages() %></hi>
 <body>
   <div class="classification">
-    <form action="/inventory/add-inventory" method="post">
+    <form action="/inv/add-inventory" method="post">
       <label for="inv_make">Make</label>
       <input type="text" name="inv_make" id="inv_make" required />
       <label for="inv_model">Model</label>
@@ -21,6 +21,7 @@
       <label for="inv_color">Color</label>
       <input type="text" name="inv_color" id="inv_color" required />
       <label for="classification_id"></label>
+      <%- classificationList %>
       <input type="submit" value="Submit">
       <input type="hidden" name="action" value="add-inventory" />
     </form>
