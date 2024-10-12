@@ -20,6 +20,12 @@ router.get("/add-inventory", Util.handleErrors(invController.addInventory));
 //Route to Add Classification
 router.get("/add-classification", Util.handleErrors(invController.addClassification));
 
+//Route to JSON
+router.get("/getInventory/:classification_id", Util.handleErrors(invController.getInventoryJSON))
+
+//Route to Edit Management View
+router.get("/edit-inventory", Util.handleErrors(invController.editManagement));
+
 //Route to Process New Classification
 router.post('/add-classification', Util.handleErrors(invController.classification));
 

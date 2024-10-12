@@ -13,6 +13,9 @@ router.get("/register", Util.handleErrors(accountController.buildRegister));
 //Route to get the parts view
 router.get("/parts", Util.handleErrors(accountController.buildParts));
 
+//Route to check Login
+router.get("/", Util.checkLogin, Util.handleErrors(accountController.accountLogin))
+
 //Route to Register the Account
 router.post('/register', Util.handleErrors(accountController.registerAccount))
 
@@ -23,7 +26,21 @@ router.post(
     regValidate.checkRegData,
     Util.handleErrors(accountController.registerAccount)
   )
+//Process the login request
+router.post(
+  "/login",
+//   regValidate.loginRules(),
+//   regValidate.checkLoginData,
+  Util.handleErrors(accountController.accountLogin)
+)
 
+// // Process the login attempt
+// router.post(
+//   "/login",
+//   (req, res) => {
+//     res.status(200).send('login process')
+//   }
+// )
 
 
 
