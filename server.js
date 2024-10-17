@@ -89,7 +89,7 @@ app.use(async (req, res, next) => {
  *************************/
 app.use(async (err, req, res, next) => {
   let nav = await Util.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`, err)
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message: err.message,
@@ -97,15 +97,6 @@ app.use(async (err, req, res, next) => {
   })
 })
 
-app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  res.render("partials/footer", {
-    title: err.status || 'Server Error',
-    message: err.message,
-    nav
-  })
-})
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file

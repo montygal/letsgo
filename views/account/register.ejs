@@ -10,21 +10,11 @@
   <div class="register">
     <form action="/account/register" method="post">
       <label for="account_firstname">First Name</label>
-      <input
-        type="text"
-        name="account_firstname"
-        id="account_firstname"
-        required
-      />
+      <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
       <label for="account_lastname">Last Name</label>
-      <input
-        type="text"
-        name="account_lastname"
-        id="account_lastname"
-        required
-      />
+      <input type="text" name="account_lastname" id="accountLastname" required value="<%= locals.account_lastname %>">
       <label for="email">Email</label>
-      <input type="email" name="account_email" id="account_email" required />
+      <input type="email" name="account_Email" id="accountEmail" required value="<%= locals.account_email %>">
       <label for="password">Password</label>
       <span
         >Passwords must be at least 12 characters and contain at least 1 number,
