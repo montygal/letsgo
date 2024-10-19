@@ -58,7 +58,6 @@ async function registerAccount(req, res) {
     account_firstname,
     account_lastname,
     account_email,
-    account_password,
     hashedPassword
   )
   if (regResult) {
@@ -113,4 +112,15 @@ async function accountLogin(req, res) {
   }
  }
 
-module.exports = {buildLogin, buildRegister, registerAccount, accountLogin}
+ /* ****************************************
+ *  Deliver Login view
+ * *************************************** */
+async function management(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/management", {
+    title: "Management",
+    nav, 
+    errors: null
+  })
+}
+module.exports = {buildLogin, buildRegister, registerAccount, accountLogin, management}

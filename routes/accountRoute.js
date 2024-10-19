@@ -14,10 +14,7 @@ router.get("/register", Util.handleErrors(accountController.buildRegister));
 router.get("/parts", Util.handleErrors(accountController.buildParts));
 
 //Route to check Login
-router.get("/", Util.checkLogin, Util.handleErrors(accountController.accountLogin))
-
-//Route to Register the Account
-router.post('/register', Util.handleErrors(accountController.registerAccount))
+router.get("/", Util.checkLogin, Util.handleErrors(accountController.management))
 
 // Process the registration data
 router.post(
@@ -26,12 +23,10 @@ router.post(
     regValidate.checkRegData,
     Util.handleErrors(accountController.registerAccount)
   )
+  
 //Process the login request
 router.post(
-  "/login",
-//   regValidate.loginRules(),
-//   regValidate.checkLoginData,
-  Util.handleErrors(accountController.accountLogin)
-)
+  "/login", Util.handleErrors(accountController.accountLogin))
+
 
 module.exports = router;
