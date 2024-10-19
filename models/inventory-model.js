@@ -103,6 +103,30 @@ async function updateInventory(
   }
 }
 
+/* ***************************
+ *  Delete Inventory Item
+ * ************************** */
+async function deleteInventory(inv_id) {
+  try {
+    const sql = 'DELETE FROM inventory WHERE inv_id = $1'
+    const data = await pool.query(sql, [inv_id])
+  return data
+  } catch (error) {
+    new Error("Delete Inventory Error")
+  }
+}
+
+/* *****************************
+ *  Add a Review
+ * *************************** */
+async function addReviews(){
+  try {
+    const sql = "INSERT INTO reviews (review_id, review_text, review_date, inv_id, account_id) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+    return await pool.query(sql, [reviews])
+  } catch (error) {
+    return error.message
+  }
+}
 
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, classification, addVehicle, updateInventory};
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, classification, addVehicle, updateInventory, deleteInventory, addReviews};

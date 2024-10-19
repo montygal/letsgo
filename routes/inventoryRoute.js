@@ -27,6 +27,15 @@ router.get("/getInventory/:classification_id", Util.handleErrors(invController.g
 //Route to Edit Management View
 router.get("/edit/:inv_id", Util.handleErrors(invController.editManagement));
 
+//Route to Delete Management View
+router.get("/delete/:inv_id", Util.handleErrors(invController.deleteManagement));
+
+//Route to get Reviews
+router.get("/reviews", Util.handleErrors(invController.reviews));
+router.get("/delete-reviews", Util.handleErrors(invController.deleteReviews));
+router.get("/review-edit", Util.handleErrors(invController.updateReviews));
+
+
 //Route to Process New Classification
 router.post('/add-classification', Util.handleErrors(invController.classification));
 
@@ -36,6 +45,8 @@ router.post('/add-inventory', Util.handleErrors(invController.addVehicle));
 //Route to edit Inventory
 router.post("/edit-inventory/", Util.handleErrors(invController.editManagement));
 
+//Route to delete inventory
+router.post("/delete-inventory"), Util.handleErrors(invController.deleteManagement);
 // Process the classification data
 router.post(
     "/add-classification",
@@ -59,4 +70,8 @@ router.post(
   validate.checkInventoryData,
   Util.handleErrors(invController.updateInventory)
 )
+
+//Route to post Reviews
+router.post('/reviews', Util.handleErrors(invController.addReview));
+
 module.exports = router;

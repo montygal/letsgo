@@ -1,0 +1,25 @@
+<hi><%- messages() %></hi>
+<h2>Add a Review!</h2>
+<div class="reviews">
+  <form action="/inv/reviews" method="post">
+    <textarea id="reviews" name="reviews" rows="4" cols="30"></textarea>
+    <input type="submit" value="Submit" />
+    <input type="hidden" value="account_Id">
+    <input type="hidden" value="inventory_Id">
+  </form>
+</div>
+<ul class="boldList">
+  <li>
+    <a
+      href="/inv/review-edit/"
+      title="Click to edit your review!"
+      >Edit your review!</a
+    >
+  </li>
+  <li>
+    <a href="/inv/delete-reviews/" title="Click to delete your review."
+      >Delete your review.</a
+    >
+  </li>
+</ul>
+

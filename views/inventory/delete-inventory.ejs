@@ -1,0 +1,19 @@
+<hi><%- messages() %></hi>
+<body>
+  <div class="classification">
+    <form action="/inv/edit-inventory" method="post">
+      <p>Confirm deletion. Deletion is permanent!</p>
+      <label for="inv_make">Make</label>
+      <input type="text" name="inv_make" id="inv_make" required value="<%= locals.inv_make %>">
+      <label for="inv_model">Model</label>
+      <input type="text" name="inv_model" id="inv_model" required value="<%= locals.inv_model %>">
+      <label for="inv_year">Year</label>
+      <input type="text" name="inv_year" id="inv_year" required value="<%= locals.inv_year %>">
+      <label for="inv_price">Price</label>
+      <input type="text" name="inv_price" id="inv_price" required value="<%= locals.inv_price %>">
+      <input type="submit" value="Submit" />
+      <input type="hidden" name="Delete"> 
+      <input type="hidden" name="inv_id">
+    </form>
+  </div>
+</body>

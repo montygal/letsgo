@@ -1,0 +1,12 @@
+<hi><%- messages() %></hi>
+<body>
+  <div class="delete-reviews">
+    <form action="/inv/delete-reviews" method="post" id="Delete reviews">
+      <textarea id="reviews" name="reviews" rows="4" cols="30"></textarea>
+      <input type="submit" value="Delete Vehicle" />
+      <input type="submit" name="submit" value="Delete Vehicle"> />
+      <input type="hidden" name="Delete">
+      <input type="hidden" name="review_id">
+    </form>
+  </div>
+</body>
