@@ -2,7 +2,8 @@ CREATE TYPE public.account_type AS ENUM
     ('Client', 'Employee', 'Admin');
 
 ALTER TYPE public.account_type
-    OWNER TO letsgo_171j_user;
+    OWNER TO letsgo_fzhl_user;
+
 
 
 CREATE TABLE public.classification(

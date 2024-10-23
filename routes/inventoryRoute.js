@@ -13,13 +13,13 @@ router.get("/type/:classificationId", Util.handleErrors(invController.buildByCla
 router.get("/detail/:invId", Util.handleErrors(invController.buildByInvId));
 
 //Route to Get Management View
-router.get("/management", Util.handleErrors(invController.management));
+router.get("/management",  Util.permissionCheck, Util.handleErrors(invController.management));
 
 //Route to Add Inventory
-router.get("/add-inventory", Util.handleErrors(invController.addInventory));
+router.get("/add-inventory",  Util.permissionCheck, Util.handleErrors(invController.addInventory));
 
 //Route to Add Classification
-router.get("/add-classification", Util.handleErrors(invController.addClassification));
+router.get("/add-classification",  Util.permissionCheck, Util.handleErrors(invController.addClassification));
 
 //Route to JSON
 router.get("/getInventory/:classification_id", Util.handleErrors(invController.getInventoryJSON))
@@ -31,47 +31,38 @@ router.get("/edit/:inv_id", Util.handleErrors(invController.editManagement));
 router.get("/delete/:inv_id", Util.handleErrors(invController.deleteManagement));
 
 //Route to get Reviews
-router.get("/reviews", Util.handleErrors(invController.reviews));
+router.get("/details", Util.handleErrors(invController.reviews));
 router.get("/delete-reviews", Util.handleErrors(invController.deleteReviews));
 router.get("/review-edit", Util.handleErrors(invController.updateReviews));
 
 
 //Route to Process New Classification
-router.post('/add-classification', Util.handleErrors(invController.classification));
+router.post('/add-classification',
+  Util.permissionCheck,
+  validate.classificationRules(),
+  validate.checkClassificationData,
+  Util.handleErrors(invController.classification));
 
 //Route to Process New Inventory
-router.post('/add-inventory', Util.handleErrors(invController.addVehicle));
-
-//Route to edit Inventory
-router.post("/edit-inventory/", Util.handleErrors(invController.editManagement));
-
-//Route to delete inventory
-router.post("/delete-inventory"), Util.handleErrors(invController.deleteManagement);
-// Process the classification data
-router.post(
-    "/add-classification",
-    validate.classificationRules(),
-    validate.checkClassificationData,
-    Util.handleErrors(invController.addVehicle)
-  )
-
-// Process the inventory data
-router.post(
-    "/add-inventory",
-    validate.inventoryRules(),
-    validate.checkInventoryData,
-    Util.handleErrors(invController.classification)
-  )
-
-//Update the inventory data
-router.post(
-  "/edit-inventory",
+router.post('/add-inventory', 
+  Util.permissionCheck,
   validate.inventoryRules(),
   validate.checkInventoryData,
-  Util.handleErrors(invController.updateInventory)
-)
+  Util.handleErrors(invController.addVehicle));
+
+//Route to edit Inventory
+router.post("/edit-inventory/", 
+  Util.permissionCheck,
+  validate.inventoryRules(),
+  validate.checkInventoryData,
+  Util.handleErrors(invController.editManagement));
+
+//Route to delete inventory
+router.post("/delete-inventory"), 
+Util.permissionCheck,
+Util.handleErrors(invController.deleteManagement);
 
 //Route to post Reviews
-router.post('/reviews', Util.handleErrors(invController.addReview));
+router.post('/details', Util.handleErrors(invController.addReview));
 
 module.exports = router;

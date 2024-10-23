@@ -258,9 +258,7 @@ input[type=password] {
   background-color: rgb(108, 108, 213);
   padding: 20px;
 }
-/*CNTRL SHIFT R*/
 
-/* BS styles */
 html {
   font-size: 16px;
 }
@@ -352,11 +350,6 @@ footer p {
 }
 
 .garrik{
-  display: flex;
-  justify-content: center;
-}
-
-.parts{
   display: flex;
   justify-content: center;
 }

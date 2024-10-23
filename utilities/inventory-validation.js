@@ -163,7 +163,8 @@ validate.checkInventoryData = async (req, res, next) => {
             inv_thumbnail,
             inv_price,
             inv_miles,
-            inv_color
+            inv_color,
+            classificationList: await utilities.buildClassificationList()
         })
         return
     }

@@ -1,12 +1,20 @@
 <header id="top-header">
-    <span class="siteName">
-      <a href="/" title="Return to home page">CSE Motors</a>
-    </span>
-    <div id="parts">
-      <a title="Click to see parts" href = "/account/parts">Parts</a>
-    </div>
-    <div id="tools">
-      <a title="Click to log in" href="/account/login">My Account</a>
-      <a title="Click to add a review" href="/inventory/reviews">Add a Review</a>
-    </div>
-  </header>
+  <% if (title) { %>
+  <h1><%= title %></h1>
+  <% } else { res.redirect('/') } %>
+  <span class="siteName">
+    <a href="/" title="Return to home page">CSE Motors</a>
+  </span>
+  <div id="tools">
+    <% if (!locals.loggedin) { %>
+    <a title="Click to log in" href="/account/login">My Account</a>
+    <%} else{%>
+    <a title="Manage account" href="/account/"
+      >Welcome <%- locals.accountData.account_firstname%></a
+    >
+    <a title="Logout" href="/account/logout">Logout</a>
+    <a title="Click to add a review" href="/inventory/reviews">Add a Review</a>
+    <%} %>
+  </div>
+</header>
+<script src="../../js/script.js"></script>

@@ -6,7 +6,7 @@ const invCont = {}
 //Deliver Reviews View
 invCont.reviews = async function (req, res, next) {
   let nav = await utilities.getNav()
-  res.render("inventory/reviews", {
+  res.render("inventory/details", {
     title: "Add Reviews",
     nav,
   })
@@ -16,7 +16,7 @@ invCont.reviews = async function (req, res, next) {
 //Deliver Delete Reviews View
 invCont.deleteReviews = async function (req, res, next) {
   let nav = await utilities.getNav()
-  res.render("inventory/reviews", {
+  res.render("inventory/details", {
     title: "Delete Reviews",
     nav,
   })
@@ -25,38 +25,13 @@ invCont.deleteReviews = async function (req, res, next) {
 //Deliver Edits for Reviews
 invCont.updateReviews = async function (req, res, next) {
   let nav = await utilities.getNav()
-  res.render("inventory/reviews", {
+  res.render("inventory/details", {
     title: "Edit Reviews",
     nav,
   })
 }
-invCont.classification = async function (req, res) {
-  let nav = await utilities.getNav()
-  const {
-    classification_name
-  } = req.body
 
-  const result = await invModel.classification(
-    classification_name
-  )
 
-  if (result) {
-    req.flash(
-      "notice",
-      `Congratulations, you\'ve added ${classification_name}.`
-    )
-    res.status(201).render("inventory/add-classification", {
-      title: "classification",
-      nav,
-    })
-  } else {
-    req.flash("notice", "Sorry, the classification addition failed.")
-    res.status(501).render("inventory/add-classification", {
-      title: "classification",
-      nav,
-    })
-  }
-}
 // //Add Review to Database
 invCont.addReview = async function (req, res) {
   let nav = await utilities.getNav()
@@ -87,8 +62,37 @@ invCont.addReview = async function (req, res) {
     })
   } else {
     req.flash("notice", "Sorry, the review addition failed.")
-    res.status(501).render("inventory/reviews", {
+    res.status(501).render("inventory/details", {
       title: "Reviews",
+      nav,
+    })
+  }
+}
+
+
+invCont.classification = async function (req, res) {
+  let nav = await utilities.getNav()
+  const {
+    classification_name
+  } = req.body
+
+  const result = await invModel.classification(
+    classification_name
+  )
+
+  if (result) {
+    req.flash(
+      "notice",
+      `Congratulations, you\'ve added ${classification_name}.`
+    )
+    res.status(201).render("inventory/add-classification", {
+      title: "classification",
+      nav,
+    })
+  } else {
+    req.flash("notice", "Sorry, the classification addition failed.")
+    res.status(501).render("inventory/add-classification", {
+      title: "classification",
       nav,
     })
   }
