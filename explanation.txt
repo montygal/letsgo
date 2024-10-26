@@ -1,0 +1,161 @@
+I wasn’t able to get all of the final enhancement to work, but here is what I accomplished:
+VIEWS:
+details.ejs view
+<hi><%- messages() %></hi>
+<h2>Add a Review!</h2>
+<div class="reviews">
+  <form action="/inv/details" method="post">
+    <textarea id="reviews" name="reviews" rows="4" cols="30"></textarea>
+    <input type="submit" value="Submit" />
+    <input type="hidden" value="account_Id">
+    <input type="hidden" value="inventory_Id">
+  </form>
+</div>
+<ul class="boldList">
+  <li>
+    <a
+      href="/inv/review-edit/"
+      title="Click to edit your review!"
+      >Edit your review!</a
+    >
+  </li>
+  <li>
+    <a href="/inv/delete-reviews/" title="Click to delete your review."
+      >Delete your review.</a
+    >
+  </li>
+</ul>
+review-edit.ejs view
+<hi><%- messages() %></hi>
+<body>
+  <div class="editing">
+    <form action="/inv/review-edit" method="post" id="updateReview">
+      <textarea id="reviews" name="reviews" rows="4" cols="30"></textarea>
+      <input type="submit" value="Modify Review" />
+      <input type="submit" name="submit" value="Modify Review" /> />
+      <input type="submit" value="Delete Vehicle" />
+      <input type="submit" name="submit" value="Delete Review" /> />
+      <input type="hidden" name="inv_id" <% if(locals.inv_id) { % /> value="<%=
+      locals.inv_id %>" <% } %>>
+    </form>
+  </div>
+</body>
+
+<script src="/js/inv-update.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+delete-reviews.ejs view
+<hi><%- messages() %></hi>
+<body>
+  <div class="delete-reviews">
+    <form action="/inv/delete-reviews" method="post" id="Delete reviews">
+      <textarea id="reviews" name="reviews" rows="4" cols="30"></textarea>
+      <input type="submit" value="Delete Vehicle" />
+      <input type="submit" name="submit" value="Delete Vehicle"> />
+      <input type="hidden" name="Delete">
+      <input type="hidden" name="review_id">
+    </form>
+  </div>
+</body>
+
+
+INVENTORY ROUTER
+//Route to get Reviews
+router.get("/details", Util.handleErrors(invController.reviews));
+router.get("/delete-reviews", Util.handleErrors(invController.deleteReviews));
+router.get("/review-edit", Util.handleErrors(invController.updateReviews));
+//Route to post Reviews
+router.post('/details', Util.handleErrors(invController.addReview));
+
+
+
+
+
+
+INVENTORY CONTROLLER
+//Deliver Reviews View
+invCont.reviews = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("inventory/details", {
+    title: "Add Reviews",
+    nav,
+  })
+}
+//Deliver Delete Reviews View
+invCont.deleteReviews = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("inventory/details", {
+    title: "Delete Reviews",
+    nav,
+  })
+}
+//Deliver Edits for Reviews
+invCont.updateReviews = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("inventory/details", {
+    title: "Edit Reviews",
+    nav,
+  })
+}
+
+
+
+ //Add Review to Database
+invCont.addReview = async function (req, res) {
+  let nav = await utilities.getNav()
+  const {
+    account_firstname,
+    review_id,
+    review_text,
+    review_date,
+    inv_id,
+    account_id
+  } = req.body
+  const result = await invModel.addReviews(
+    account_firstname,
+    review_id,
+    review_text,
+    review_date,
+    inv_id,
+    account_id)
+
+  if (result) {
+    req.flash(
+      "notice",
+      `Congratulations, you\'ve added a review!${account_firstname}`
+    )
+    res.status(201).render("account/login", {
+      title: "Review",
+      nav,
+    })
+  } else {
+    req.flash("notice", "Sorry, the review addition failed.")
+    res.status(501).render("inventory/details", {
+      title: "Reviews",
+      nav,
+    })
+  }
+}
+
+
+INVENTORY MODEL
+/* *****************************
+ *  Add a Review
+ * *************************** */
+async function addReviews(){
+  try {
+    const sql = "INSERT INTO reviews (review_id, review_text, review_date, inv_id, account_id) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+    return await pool.query(sql, [reviews])
+  } catch (error) {
+    return error.message
+  }
+}
